@@ -1,15 +1,18 @@
 # fluttereventsapp
 
-A new Flutter project.
+This a flutter app using firebase, where you can login anonymously, create events, view other people's events and edit your events.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+In order to run the app you need to add your firebase project settings to the app.
 
-A few resources to get you started if this is your first Flutter project:
+Open Xcode -> Add files to runner -> Select your google-services-plist file
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Note: You have to use the same bundle Id in your firebase project, for android build and for ios build
+
+## Dependancies
+
+This app uses GetX state management and intl package for managing date formatting.
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
