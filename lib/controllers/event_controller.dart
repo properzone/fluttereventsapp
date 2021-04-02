@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/auth_controller.dart';
-import 'package:fluttereventsapp/models/event.dart';
-import 'package:fluttereventsapp/services/database_services.dart';
 import 'package:get/get.dart';
+
+import '../models/event.dart';
+import './auth_controller.dart';
 
 class EventController extends GetxController {
   AuthController auth = Get.find<AuthController>();
-  Event? event;
-  EventController({this.event});
+  Event event;
+  EventController({required this.event});
 
   late TextEditingController titleController;
   late TextEditingController descController;
@@ -15,20 +15,13 @@ class EventController extends GetxController {
 
   @override
   void onInit() {
-    titleController = TextEditingController(text: event?.title ?? "");
-    title = event?.title ?? "";
-    descController = TextEditingController(text: event?.description ?? "");
-    location = event?.location ?? "";
-    locController = TextEditingController(text: event?.location ?? "");
-    description = event?.description ?? "";
-    date = event?.eventDateTime ?? DateTime.now();
-    type = event?.eventType ?? EventType.business;
+    titleController = TextEditingController(text: event.title);
+    descController = TextEditingController(text: event.description);
+    locController = TextEditingController(text: event.location);
+    date = event.eventDateTime;
+    type = event.eventType;
     super.onInit();
   }
-
-  String? title;
-  String? location;
-  String? description;
 
   Rx<DateTime> _date = DateTime.now().obs;
   RxBool _loading = false.obs;
@@ -42,40 +35,31 @@ class EventController extends GetxController {
   EventType get type => this._type.value;
 
   void setTitle(String input) {
-    title = input;
+    event.title = input;
   }
 
   void setLocation(String input) {
-    location = input;
+    event.location = input;
   }
 
   void setDescription(String input) {
-    description = input;
+    event.description = input;
   }
 
   void selectType(EventType _type) {
     type = _type;
+    event.eventType = _type;
   }
 
   void selectDate(DateTime _date) {
     date = _date;
+    event.eventDateTime = _date;
   }
 
   Future<void> submit() async {
     loading = true;
 
-    var _event = event ??
-        Event(
-          owner: auth.user!.uid,
-          description: description!,
-          eventDateTime: date,
-          eventType: type,
-          insertDateTime: DateTime.now(),
-          location: location!,
-          title: title!,
-        );
-
-    await _event.save();
+    await event.save();
 
     loading = false;
     Get.close(1);

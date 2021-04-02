@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttereventsapp/pages/root_page.dart';
-import 'package:fluttereventsapp/services/auth_services.dart';
 import 'package:get/get.dart';
+
+import '../pages/root_page.dart';
+import '../services/auth_services.dart';
 
 enum AuthState {
   loading,

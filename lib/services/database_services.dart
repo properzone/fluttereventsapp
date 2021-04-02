@@ -37,7 +37,7 @@ class DatabaseServices {
         .map(_eventsFromSnapshot);
   }
 
-  static Future<void> deleteEvent({required Event event}) async {
-    await eventsCollection.doc(event.docId).delete();
+  static Future<void> deleteEvent({required String documentId}) async {
+    await eventsCollection.doc(documentId).delete();
   }
 }

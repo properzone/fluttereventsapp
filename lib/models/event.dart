@@ -1,5 +1,4 @@
 import '../services/database_services.dart';
-import '../services/database_services.dart';
 
 class Event {
   String? docId;
@@ -11,15 +10,16 @@ class Event {
   String location;
   EventType eventType;
 
-  Event(
-      {this.docId,
-      required this.owner,
-      required this.description,
-      required this.eventDateTime,
-      required this.eventType,
-      required this.insertDateTime,
-      required this.location,
-      required this.title});
+  Event({
+    this.docId,
+    required this.owner,
+    this.description = '',
+    required this.eventDateTime,
+    this.eventType = EventType.business,
+    required this.insertDateTime,
+    this.location = '',
+    this.title = '',
+  });
 
   static EventType typeFromTitle(String title) {
     EventType eventType = EventType.business;
@@ -66,6 +66,10 @@ class Event {
       // Update event:
       await DatabaseServices.updateEvent(this.docId!, map: this.toMap);
     }
+  }
+
+  Future<void> delete() async {
+    await DatabaseServices.deleteEvent(documentId: this.docId!);
   }
 }
 

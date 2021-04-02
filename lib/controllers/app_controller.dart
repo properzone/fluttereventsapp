@@ -21,8 +21,17 @@ class AppController extends GetxController {
       DatabaseServices.userEventsStream(auth.user!.uid);
 
   void updateEvent({Event? event}) {
+    print('updateEvent ...');
+
+    var _event = event ??
+        Event(
+          eventDateTime: DateTime.now(),
+          insertDateTime: DateTime.now(),
+          owner: auth.user!.uid,
+        );
+
     String uniqueKey = UniqueKey().toString();
-    EventController eventController = Get.put(EventController(event: event),
+    EventController eventController = Get.put(EventController(event: _event),
         permanent: false, tag: uniqueKey);
     Get.bottomSheet(
             EditEvent(
@@ -33,7 +42,9 @@ class AppController extends GetxController {
   }
 
   void deleteEvent({required Event event}) async {
-    await DatabaseServices.deleteEvent(event: event);
-    Get.snackbar("Deleted", "The event was deleted successfully");
+    if (event.docId != null) {
+      await event.delete();
+      Get.snackbar("Deleted", "The event was deleted successfully");
+    }
   }
 }
