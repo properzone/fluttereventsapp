@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttereventsapp/controllers/app_controller.dart';
+import 'package:fluttereventsapp/controllers/auth_controller.dart';
 import 'package:fluttereventsapp/widgets/events_list.dart';
 import 'package:fluttereventsapp/widgets/my_events.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 
 class RootPage extends StatelessWidget {
@@ -18,6 +20,14 @@ class RootPage extends StatelessWidget {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Text('Events App'),
+            actions: [
+              GetBuilder<AuthController>(
+                  builder: (auth) => IconButton(
+                      icon: Icon(Icons.logout),
+                      onPressed: () {
+                        auth.signOut();
+                      }))
+            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: app.currentPage,

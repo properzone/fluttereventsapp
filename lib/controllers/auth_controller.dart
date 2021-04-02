@@ -18,6 +18,11 @@ class AuthController extends GetxController {
   late User? user;
   @override
   void onInit() async {
+    await signIn();
+    super.onInit();
+  }
+
+  Future<void> signIn() async {
     authState = AuthState.loading;
     await Future.delayed(Duration(seconds: 0));
     user = AuthServices.getUser();
@@ -30,8 +35,13 @@ class AuthController extends GetxController {
       Get.snackbar("Success!", "User Logged in");
       await Future.delayed(Duration(seconds: 1));
     }
-    Get.off(() => RootPage());
+    Get.to(() => RootPage());
     authState = AuthState.loggedin;
-    super.onInit();
+  }
+
+  Future<void> signOut() async {
+    await AuthServices.signOut();
+    Get.close(1);
+    await signIn();
   }
 }
