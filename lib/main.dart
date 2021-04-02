@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'controllers/app_controller.dart';
-import 'controllers/auth_controller.dart';
+import './pages/login_page.dart';
+import './controllers/app_controller.dart';
+import './controllers/auth_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

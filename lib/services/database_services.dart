@@ -1,22 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fluttereventsapp/models/event.dart';
+
+import '../models/event.dart';
 
 class DatabaseServices {
+  static CollectionReference eventsCollection =
+      FirebaseFirestore.instance.collection("appevents");
+
   static Future<void> setEvent(Map<String, dynamic> map) async {
-    FirebaseFirestore.instance.collection("appevents").doc().set(map);
+    await eventsCollection.doc().set(map);
   }
 
   static Future<void> updateEvent(
-      Map<String, dynamic> map, String docId) async {
-    FirebaseFirestore.instance.collection("appevents").doc(docId).update(map);
+    String docId, {
+    required Map<String, dynamic> map,
+  }) async {
+    await eventsCollection.doc(docId).update(map);
   }
 
   static Stream<List<Event>> eventsStream() {
-    return FirebaseFirestore.instance
-        .collection("appevents")
-        .snapshots()
-        .distinct()
-        .map(_eventsFromSnapshot);
+    return eventsCollection.snapshots().distinct().map(_eventsFromSnapshot);
   }
 
   static List<Event> _eventsFromSnapshot(QuerySnapshot snap) {
@@ -26,8 +28,7 @@ class DatabaseServices {
   }
 
   static Stream<List<Event>> userEventsStream(String uid) {
-    return FirebaseFirestore.instance
-        .collection("appevents")
+    return eventsCollection
         .where("owner", isEqualTo: uid)
         .snapshots()
         .distinct()
@@ -35,9 +36,6 @@ class DatabaseServices {
   }
 
   static Future<void> deleteEvent({required Event event}) async {
-    await FirebaseFirestore.instance
-        .collection("appevents")
-        .doc(event.docId)
-        .delete();
+    await eventsCollection.doc(event.docId).delete();
   }
 }

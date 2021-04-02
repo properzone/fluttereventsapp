@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/event_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../controllers/event_controller.dart';
 
 class DateWidget extends StatelessWidget {
   const DateWidget({

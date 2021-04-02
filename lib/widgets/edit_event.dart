@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/event_controller.dart';
-import 'package:fluttereventsapp/widgets/type_widget.dart';
 import 'package:get/get.dart';
 
-import 'date_widget.dart';
-import 'event_controller.dart';
+import '../controllers/event_controller.dart';
+import './type_widget.dart';
+import './date_widget.dart';
+import './event_controller.dart';
 
 class EditEvent extends StatefulWidget {
-  EventController eventController;
+  final EventController eventController;
   EditEvent({required this.eventController});
   @override
   _EditEventState createState() => _EditEventState();

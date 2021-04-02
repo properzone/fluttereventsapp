@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/app_controller.dart';
-import 'package:fluttereventsapp/models/event.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/get.dart';
 
-import 'event_card.dart';
+import '../controllers/app_controller.dart';
+import '../models/event.dart';
+import './event_card.dart';
 
 class MyEvents extends StatelessWidget {
   @override

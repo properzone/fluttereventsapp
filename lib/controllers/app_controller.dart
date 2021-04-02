@@ -20,7 +20,7 @@ class AppController extends GetxController {
   Stream<List<Event>> get userEventStream =>
       DatabaseServices.userEventsStream(auth.user!.uid);
 
-  void editEvent({Event? event}) {
+  void updateEvent({Event? event}) {
     String uniqueKey = UniqueKey().toString();
     EventController eventController = Get.put(EventController(event: event),
         permanent: false, tag: uniqueKey);

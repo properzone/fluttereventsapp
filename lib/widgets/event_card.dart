@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/app_controller.dart';
-import 'package:fluttereventsapp/controllers/auth_controller.dart';
-import 'package:fluttereventsapp/models/event.dart';
-import 'package:fluttereventsapp/widgets/event_sheet.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../controllers/app_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../models/event.dart';
+import './event_sheet.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
@@ -99,7 +100,7 @@ class EventCard extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          app.editEvent(event: event);
+                          app.updateEvent(event: event);
                         },
                       ),
                       IconButton(

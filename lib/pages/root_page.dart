@@ -15,37 +15,38 @@ class RootPage extends StatelessWidget {
       builder: (app) => WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text('Events App'),
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: app.currentPage,
-              onTap: (index) {
-                app.togglePage(index);
-              },
-              items: [
-                BottomNavigationBarItem(
-                  label: "All Events",
-                  icon: Icon(
-                    Icons.list,
-                  ),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('Events App'),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: app.currentPage,
+            onTap: (index) {
+              app.togglePage(index);
+            },
+            items: [
+              BottomNavigationBarItem(
+                label: "All Events",
+                icon: Icon(
+                  Icons.list,
                 ),
-                BottomNavigationBarItem(
-                  label: "My Events",
-                  icon: Icon(
-                    Icons.settings,
-                  ),
+              ),
+              BottomNavigationBarItem(
+                label: "My Events",
+                icon: Icon(
+                  Icons.settings,
                 ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                app.editEvent();
-              },
-              child: Icon(Icons.add),
-            ),
-            body: app.currentPage == 0 ? EventsList() : MyEvents()),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              app.updateEvent();
+            },
+            child: Icon(Icons.add),
+          ),
+          body: app.currentPage == 0 ? EventsList() : MyEvents(),
+        ),
       ),
     );
   }

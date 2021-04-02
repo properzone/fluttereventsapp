@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/event_controller.dart';
-import 'package:fluttereventsapp/widgets/radio_button.dart';
 import 'package:get/get.dart';
+
+import '../controllers/event_controller.dart';
 import '../models/event.dart';
+import './radio_button.dart';
 
 class TypeWidget extends StatelessWidget {
   const TypeWidget({

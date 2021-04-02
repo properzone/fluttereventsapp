@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class EventController extends GetxController {
   AuthController auth = Get.find<AuthController>();
-  late Event? event;
+  Event? event;
   EventController({this.event});
 
   late TextEditingController titleController;
@@ -63,29 +63,20 @@ class EventController extends GetxController {
 
   Future<void> submit() async {
     loading = true;
-    if (event == null) {
-      await DatabaseServices.setEvent(Event(
-              owner: auth.user!.uid,
-              description: description!,
-              eventDateTime: date,
-              eventType: type,
-              insertDateTime: DateTime.now(),
-              location: location!,
-              title: title!)
-          .toMap());
-    } else {
-      await DatabaseServices.updateEvent(
-          Event(
-                  owner: auth.user!.uid,
-                  description: description!,
-                  eventDateTime: date,
-                  eventType: type,
-                  insertDateTime: DateTime.now(),
-                  location: location!,
-                  title: title!)
-              .toMap(),
-          event!.docId!);
-    }
+
+    var _event = event ??
+        Event(
+          owner: auth.user!.uid,
+          description: description!,
+          eventDateTime: date,
+          eventType: type,
+          insertDateTime: DateTime.now(),
+          location: location!,
+          title: title!,
+        );
+
+    await _event.save();
+
     loading = false;
     Get.close(1);
   }

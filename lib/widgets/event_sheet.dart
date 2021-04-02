@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/models/event.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../models/event.dart';
 
 class EventSheet extends StatelessWidget {
   final Event event;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttereventsapp/controllers/event_controller.dart';
+
+import '../controllers/event_controller.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
