@@ -17,11 +17,11 @@ class EventsList extends StatelessWidget {
             stream: app.eventStream,
             builder: (context, AsyncSnapshot<List<Event>> snapshot) {
               if (snapshot.hasData) {
-                print(snapshot.data);
                 if (snapshot.data!.length == 0) {
                   return Center(child: Text("🥲 No Data Yet!"));
                 }
                 return ListView.builder(
+                    padding: EdgeInsets.only(bottom: 80.0),
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       return EventCard(event: snapshot.data![index]);

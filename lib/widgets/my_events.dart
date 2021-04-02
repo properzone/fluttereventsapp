@@ -19,7 +19,6 @@ class MyEvents extends StatelessWidget {
             stream: app.userEventStream,
             builder: (context, AsyncSnapshot<List<Event>> snapshot) {
               if (snapshot.hasData) {
-                print(snapshot.data);
                 if (snapshot.data!.length == 0) {
                   return Center(child: Text("🥲 No Data Yet!"));
                 }
