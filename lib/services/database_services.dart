@@ -20,9 +20,11 @@ class DatabaseServices {
   }
 
   static List<Event> _eventsFromSnapshot(QuerySnapshot snap) {
-    return snap.docs.map((e) {
+    var rawList = snap.docs.map((e) {
       return Event.fromMap(e.data() as Map<String, dynamic>, e.id);
     }).toList();
+    rawList.sort((a, b) => a.eventDateTime.compareTo(b.eventDateTime));
+    return rawList;
   }
 
   static Stream<List<Event>> userEventsStream(String uid) {

@@ -14,6 +14,7 @@ class DateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = DateTime.now();
     return GestureDetector(
       onTap: () {
         Get.bottomSheet(
@@ -26,6 +27,7 @@ class DateWidget extends StatelessWidget {
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
               minimumYear: 2021,
+              minimumDate: eventController.date,
               initialDateTime: eventController.date,
               onDateTimeChanged: (input) {
                 eventController.selectDate(input);

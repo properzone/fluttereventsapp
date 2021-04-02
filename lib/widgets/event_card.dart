@@ -42,7 +42,12 @@ class EventCard extends StatelessWidget {
                           "Location",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        Text(event.location),
+                        Row(
+                          children: [
+                            Icon(Icons.location_on_outlined),
+                            Text(event.location),
+                          ],
+                        ),
                         SizedBox(height: 12),
                         Text(
                           "Event Type",
@@ -51,7 +56,8 @@ class EventCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(event.eventType.emoji),
-                            Text(event.eventType.title),
+                            SizedBox(width: 8.0),
+                            Text(event.eventType.title.capitalizeFirst!),
                           ],
                         ),
                         SizedBox(height: 12),

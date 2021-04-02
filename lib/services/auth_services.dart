@@ -10,4 +10,8 @@ class AuthServices {
   static User? getUser() {
     return FirebaseAuth.instance.currentUser;
   }
+
+  static Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }
