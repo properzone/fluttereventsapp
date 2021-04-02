@@ -22,13 +22,18 @@ class AppController extends GetxController {
 
   void editEvent({Event? event}) {
     String uniqueKey = UniqueKey().toString();
-    EventController eventController =
-        Get.put(EventController(), permanent: false, tag: uniqueKey);
+    EventController eventController = Get.put(EventController(event: event),
+        permanent: false, tag: uniqueKey);
     Get.bottomSheet(
             EditEvent(
               eventController: eventController,
             ),
             isScrollControlled: true)
         .then((value) => Get.delete<EventController>(tag: uniqueKey));
+  }
+
+  void deleteEvent({required Event event}) async {
+    await DatabaseServices.deleteEvent(event: event);
+    Get.snackbar("Deleted", "The event was deleted successfully");
   }
 }

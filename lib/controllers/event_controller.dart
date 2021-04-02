@@ -16,8 +16,11 @@ class EventController extends GetxController {
   @override
   void onInit() {
     titleController = TextEditingController(text: event?.title ?? "");
+    title = event?.title ?? "";
     descController = TextEditingController(text: event?.description ?? "");
+    location = event?.location ?? "";
     locController = TextEditingController(text: event?.location ?? "");
+    description = event?.description ?? "";
     date = event?.eventDateTime ?? DateTime.now();
     type = event?.eventType ?? EventType.business;
     super.onInit();
@@ -60,15 +63,29 @@ class EventController extends GetxController {
 
   Future<void> submit() async {
     loading = true;
-    await DatabaseServices.setEvent(Event(
-            owner: auth.user!.uid,
-            description: description!,
-            eventDateTime: date,
-            eventType: type,
-            insertDateTime: DateTime.now(),
-            location: location!,
-            title: title!)
-        .toMap());
+    if (event == null) {
+      await DatabaseServices.setEvent(Event(
+              owner: auth.user!.uid,
+              description: description!,
+              eventDateTime: date,
+              eventType: type,
+              insertDateTime: DateTime.now(),
+              location: location!,
+              title: title!)
+          .toMap());
+    } else {
+      await DatabaseServices.updateEvent(
+          Event(
+                  owner: auth.user!.uid,
+                  description: description!,
+                  eventDateTime: date,
+                  eventType: type,
+                  insertDateTime: DateTime.now(),
+                  location: location!,
+                  title: title!)
+              .toMap(),
+          event!.docId!);
+    }
     loading = false;
     Get.close(1);
   }

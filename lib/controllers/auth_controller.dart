@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttereventsapp/pages/root_page.dart';
 import 'package:fluttereventsapp/services/auth_services.dart';
@@ -25,12 +24,13 @@ class AuthController extends GetxController {
     if (user == null) {
       userCredential = await AuthServices.anonymousLogin();
       Get.snackbar("Success!", "New User Logged In!");
+      user = AuthServices.getUser();
       await Future.delayed(Duration(seconds: 1));
     } else {
       Get.snackbar("Success!", "User Logged in");
       await Future.delayed(Duration(seconds: 1));
     }
-    Get.to(() => RootPage());
+    Get.off(() => RootPage());
     authState = AuthState.loggedin;
     super.onInit();
   }

@@ -44,6 +44,7 @@ extension EventTypeExtension on EventType {
 }
 
 class Event {
+  final String? docId;
   final String owner;
   final String title;
   final String description;
@@ -53,7 +54,8 @@ class Event {
   final EventType eventType;
 
   Event(
-      {required this.owner,
+      {this.docId,
+      required this.owner,
       required this.description,
       required this.eventDateTime,
       required this.eventType,
@@ -71,10 +73,9 @@ class Event {
     return eventType;
   }
 
-  factory Event.fromMap(Map<String, dynamic> map) {
-    print(map);
-
+  factory Event.fromMap(Map<String, dynamic> map, String? docId) {
     return Event(
+      docId: docId,
       owner: map["owner"],
       description: map["description"],
       eventDateTime: DateTime.fromMillisecondsSinceEpoch(

@@ -21,7 +21,7 @@ class DatabaseServices {
 
   static List<Event> _eventsFromSnapshot(QuerySnapshot snap) {
     return snap.docs.map((e) {
-      return Event.fromMap(e.data() as Map<String, dynamic>);
+      return Event.fromMap(e.data() as Map<String, dynamic>, e.id);
     }).toList();
   }
 
@@ -32,5 +32,12 @@ class DatabaseServices {
         .snapshots()
         .distinct()
         .map(_eventsFromSnapshot);
+  }
+
+  static Future<void> deleteEvent({required Event event}) async {
+    await FirebaseFirestore.instance
+        .collection("appevents")
+        .doc(event.docId)
+        .delete();
   }
 }
