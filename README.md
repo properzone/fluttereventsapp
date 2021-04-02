@@ -12,7 +12,7 @@ Note: You have to use the same bundle Id in your firebase project, for android b
 
 ## Dependancies
 
-This app uses GetX state management and intl package for managing date formatting.
+This app uses [GetX](https://pub.dev/packages/get) state management and [intl](https://pub.dev/packages/intl) package for managing date formatting.
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
