@@ -20,8 +20,9 @@ class DateWidget extends StatelessWidget {
         Get.bottomSheet(
           Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(8.0)),
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             height: 300,
             padding: EdgeInsets.all(16.0),
             child: GetPlatform.isIOS
@@ -47,29 +48,31 @@ class DateWidget extends StatelessWidget {
         );
       },
       child: Container(
-          decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(8.0)),
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-          margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Event Date  :  "),
-              Obx(
-                () => Text(
-                    DateFormat.yMMMd().format(eventController.date).toString()),
-              ),
-              Container(
-                height: 12.0,
-                width: 1.0,
-                color: Theme.of(context).disabledColor,
-                margin: EdgeInsets.symmetric(horizontal: 8.0),
-              ),
-              Icon(Icons.edit, size: 16)
-            ],
-          )),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+        margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Event Date  :  "),
+            Obx(
+              () => Text(
+                  DateFormat.yMMMd().format(eventController.date).toString()),
+            ),
+            Container(
+              height: 12.0,
+              width: 1.0,
+              color: Theme.of(context).disabledColor,
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
+            ),
+            Icon(Icons.edit, size: 16)
+          ],
+        ),
+      ),
     );
   }
 }
